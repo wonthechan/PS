@@ -7,11 +7,9 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Solution_D4_1210_Ladder1_임예찬 {
-
 	// 사다리 배열  선언
 	static int[][] ladder;
 	static boolean[][] visit;
-	
 	// 사다리 배열 Size (100 x 100)
 	static final int N = 100;
 	
@@ -29,11 +27,6 @@ public class Solution_D4_1210_Ladder1_임예찬 {
 			int tcNum = Integer.parseInt(br.readLine());
 			int answer = 0;
 			
-			// 사다리 배열의 모든 값 0으로 초기화 (생략 가능)
-//			for (int[] i : ladder) {
-//				Arrays.fill(i, 0);
-//			}
-			
 			// 사다리 배열 입력
 			for (int i = 0; i < N; i++) {
 				st = new StringTokenizer(br.readLine());
@@ -42,25 +35,15 @@ public class Solution_D4_1210_Ladder1_임예찬 {
 				}
 			}
 			
-
-//			System.out.println(dfs(0, 39));
 			for (int j = 0; j < N; j++) {
 				// visit 배열 초기화
 				initVisit();
 				if (dfs(0, j) == true) {
-//					System.out.println("## " + "j = " + j);
 					answer = j;
 					break;
 				}
 			}
 			
-//			for (int i = 0; i < N; i++) {
-//				for (int j = 0; j < N; j++) {
-//					System.out.print(visit[i][j] + " ");
-//				}
-//				System.out.println();
-//			}
-
 			System.out.println("#" + tcNum + " " + answer);
 		}
 	}
@@ -121,12 +104,11 @@ public class Solution_D4_1210_Ladder1_임예찬 {
 				return dfs(i+1, j);
 			}
 		} else if (ladder[i][j] == 2) {
-//			System.out.println("YOOO");
 			// 정답을 찾은 경우
 			return true;
 		}
 		
-		System.out.println("i = " + i + ", j = " + j);
+//		System.out.println("i = " + i + ", j = " + j);
 		return false;
 	}
 	
