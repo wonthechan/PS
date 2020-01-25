@@ -7,9 +7,9 @@ import java.util.StringTokenizer;
 
 public class Main_J1291_구구단 {
 
-	// 삼각형의 높이 n (1부터 30사이의 정수)과 종류 m (1부터 3사이의 정수)
-	static int n;
-	static int m;
+	// 구구단의 시작 범위 s와 끝 범위 e (2부터 9사이의 정수)
+	static int s;
+	static int e;
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
@@ -17,9 +17,9 @@ public class Main_J1291_구구단 {
 		while(true) {
 			// 시작범위와 끝 범위를 입력 받는다.
 			st = new StringTokenizer(br.readLine());
-			n = Integer.parseInt(st.nextToken());
-			m = Integer.parseInt(st.nextToken());
-			if ((n >= 1 && n <= 30) && (m >= 1 && m <= 3)) {
+			s = Integer.parseInt(st.nextToken());
+			e = Integer.parseInt(st.nextToken());
+			if ((s >= 2 && s <= 9) && (e >= 2 && e <= 9)) {
 				// 올바른 범위에 있는 경우
 				break;
 			} else {
@@ -28,16 +28,33 @@ public class Main_J1291_구구단 {
 			}
 		}
 		
-		printPascal(n, m);
+		if (s < e) {
+			printGugudan(s, e);
+		} else {
+			// 역순으로 구구단 출력
+			printGugudanDesc(s, e);
+		}
 	}
 	
-	private static void printPascal(int n, int m) {
-		for (int i = 0; i < n; i++) {
-			
+	private static void printGugudan(int s, int e) {
+		for (int i = 1; i <= 9; i++) {
+			for (int dan = s; dan < e; dan++) {
+				System.out.printf("%d * %d = %2d", dan, i, dan * i);
+				System.out.print("   ");
+			}
+			System.out.printf("%d * %d = %2d", e, i, e * i);
+			System.out.println();
 		}
 	}
 
-	private static void getPascalNums(int n) {
-		
+	private static void printGugudanDesc(int s, int e) {
+		for (int i = 1; i <= 9; i++) {
+			for (int dan = s; dan > e; dan--) {
+				System.out.printf("%d * %d = %2d", dan, i, dan * i);
+				System.out.print("   ");
+			}
+			System.out.printf("%d * %d = %2d", e, i, e * i);
+			System.out.println();
+		}
 	}
 }
