@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main_J1291_구구단 {
+public class Main_J1291_구구단_임예찬 {
 
 	// 구구단의 시작 범위 s와 끝 범위 e (2부터 9사이의 정수)
 	static int s;

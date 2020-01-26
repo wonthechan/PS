@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main_J1309_팩토리얼 {
+public class Main_J1309_팩토리얼_임예찬 {
 
 	// 팩토리얼의 숫자 n (1<=n<=15)
 	static int n;

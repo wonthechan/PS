@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main_J2817_로또 {
+public class Main_J2817_로또_임예찬 {
 	// 후보 숫자 개수
 	static int K;
 	// 후보 숫자 배열

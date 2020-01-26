@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main_J1880_암호풀기 {
+public class Main_J1880_암호풀기_임예찬 {
 	// 복호화 키를 담을 배열 (26개의 소문자)
 	static char[] keyArr;
 	// 암호화 된 문자열 (최대 80문자)

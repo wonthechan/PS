@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Main_J2857_세로읽기 {
+public class Main_J2857_세로읽기_임예찬 {
 	// 다섯 개의 단어를 담는 배열 (단어는 최소 1개, 최대 15개의 문자로 구성)
 	static char[][] words;
 	static final int lenWords = 5;
