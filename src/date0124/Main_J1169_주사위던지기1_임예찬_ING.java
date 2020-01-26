@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main_J1169_주사위던지기1_임예찬 {
+public class Main_J1169_주사위던지기1_임예찬_ING {
 
 	// 주사위를 던진 횟수 N (2<=n<=5)
 	static int N;
