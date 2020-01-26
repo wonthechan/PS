@@ -32,13 +32,13 @@ public class Main_J2817_로또 {
 
 	private static void comboR(int level, int curIdx, int tgtIdx) {
 		if (level == 6) {
-			// 6개 다 뽑은 경우
+			// 6개 다 뽑은 경우 (종료조건)
 			printLottos();
 			return;
 		}
 		
 		if (tgtIdx == K) {
-			// 모든 후보 숫자들을 탐색한 경우
+			// 모든 후보 숫자들을 탐색한 경우 (종료조건)
 			return;
 		}
 		
