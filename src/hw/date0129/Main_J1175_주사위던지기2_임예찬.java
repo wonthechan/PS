@@ -1,4 +1,4 @@
-package date0129;
+package hw.date0129;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,11 +1,11 @@
-package date0124;
+package hw.date0124;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main_J1341_구구단2_임예찬 {
+public class Main_J1291_구구단_임예찬 {
 
 	// 구구단의 시작 범위 s와 끝 범위 e (2부터 9사이의 정수)
 	static int s;
@@ -37,23 +37,23 @@ public class Main_J1341_구구단2_임예찬 {
 	}
 	
 	private static void printGugudan(int s, int e) {
-		for (int dan = s; dan <= e; dan++) {
-			for (int j = 1; j <=9; j++) {
-				System.out.printf("%d * %d = %2d", dan, j, dan * j);
+		for (int i = 1; i <= 9; i++) {
+			for (int dan = s; dan < e; dan++) {
+				System.out.printf("%d * %d = %2d", dan, i, dan * i);
 				System.out.print("   ");
-				if (j % 3 == 0) System.out.println();
 			}
+			System.out.printf("%d * %d = %2d", e, i, e * i);
 			System.out.println();
 		}
 	}
 
 	private static void printGugudanDesc(int s, int e) {
-		for (int dan = s; dan >= e; dan--) {
-			for (int j = 1; j <=9; j++) {
-				System.out.printf("%d * %d = %2d", dan, j, dan * j);
+		for (int i = 1; i <= 9; i++) {
+			for (int dan = s; dan > e; dan--) {
+				System.out.printf("%d * %d = %2d", dan, i, dan * i);
 				System.out.print("   ");
-				if (j % 3 == 0) System.out.println();
 			}
+			System.out.printf("%d * %d = %2d", e, i, e * i);
 			System.out.println();
 		}
 	}
