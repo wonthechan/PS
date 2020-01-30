@@ -62,6 +62,20 @@ public class Main_J1175_주사위던지기2_임예찬 {
 			// sum 매개변수에 방금 뽑은 수를 누적.
 			permutation(index+1, sum + i);
 		}
+		
+		/* 아래는 더 직관적인 방법 */
+//		numbers[index] = 1;
+//		permutation(index+1, sum + 1);
+//		numbers[index] = 2;
+//		permutation(index+1, sum + 2);
+//		numbers[index] = 3;
+//		permutation(index+1, sum + 3);
+//		numbers[index] = 4;
+//		permutation(index+1, sum + 4);
+//		numbers[index] = 5;
+//		permutation(index+1, sum + 5);
+//		numbers[index] = 6;
+//		permutation(index+1, sum + 6);
 	}
 	
 	private static void printNumbers() {
