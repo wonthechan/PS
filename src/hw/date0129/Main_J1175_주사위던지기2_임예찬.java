@@ -6,7 +6,8 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main_J1175_주사위던지기2_임예찬 {
-	/* 자연수 N과 M을 입력 받아서 주사위를 N번 던져서 나온 눈의 합이 M이 나올 수 있는 모든 경우를 출력 */
+	/* 자연수 N과 M을 입력 받아서 
+	 * 주사위를 N번 던져서 나온 눈의 합이 M이 나올 수 있는 모든 경우를 출력 (중복 순열 문제)*/
 	static int N, M;	// 주사위를 던진 횟수 N(2≤N≤7)과 눈의 합 M(1≤M≤40)
 	static int[] numbers;
 	
@@ -37,6 +38,7 @@ public class Main_J1175_주사위던지기2_임예찬 {
 		
 		for (int i = 1; i <= 6; i++) {
 			numbers[index] = i;
+			// sum 매개변수에 방금 뽑은 수를 누적.
 			permutation(index+1, sum + i);
 		}
 	}
