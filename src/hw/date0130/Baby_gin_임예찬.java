@@ -40,7 +40,7 @@ public class Baby_gin_임예찬 {
 		}
 	}
 
-	// boolean형을 리턴하는 버전
+	// boolean형을 리턴하는 버전 (비트마스킹 활용)
 	private static boolean isBabygin(int index, int selected) {
 		if (index == N) {	// 기저조건
 			// 해당 순열이  BabyGin인지 확인하는 메소드 실행 (배열을 문자열로 변환하여 매개변수로 전달)
