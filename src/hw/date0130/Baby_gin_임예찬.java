@@ -30,16 +30,32 @@ public class Baby_gin_임예찬 {
 			numbers[i] = Integer.parseInt(str.charAt(i) + "");
 		}
 		
-		isBabyGin = false;				// 초기 상태는 false로 지정한다. 
-		generatePerm(0);				// 순열을 만들어내는 메소드를 실행
+//		isBabyGin = false;				// 초기 상태는 false로 지정한다. 
+//		generatePerm(0);				// 순열을 만들어내는 메소드를 실행
 		
-		if(isBabyGin) {
+		if(isBabygin(0,0)) {
 			System.out.println("Baby-gin 입니다!!");
 		} else {
 			System.out.println("Baby-gin 이 아닙니다..");
 		}
 	}
 
+	// boolean형을 리턴하는 버전
+	private static boolean isBabygin(int index, int selected) {
+		if (index == N) {	// 기저조건
+			// 해당 순열이  BabyGin인지 확인하는 메소드 실행 (배열을 문자열로 변환하여 매개변수로 전달)
+			String toStr = "";
+			for (int i = 0; i < N; i++) toStr += result[i];
+			return checkBabyGin(toStr);
+		}
+		for (int i = 0; i < N; i++) {
+			if ((selected & 1<<i) != 0) continue;	// if (selected[i]) continue;
+			result[index] = numbers[i];
+			if(isBabygin(index + 1, selected | 1<<i)) return true;
+		}
+		return false;
+	}
+	
 	/* 입력받은 6자리의 수로 만들 수 있는 모든 순열을 구한다 */
 	private static void generatePerm(int index) {
 		if (index == N) {	// 기저조건
