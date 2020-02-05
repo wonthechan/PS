@@ -17,7 +17,7 @@ public class Baby_gin_임예찬 {
 	static int[] numbers;		// 뽑은 6개의 숫자가 저장된 배열
 	static int[] result;		// 앞서 뽑은 6개의 숫자로 만들 수 있는 순열이 저장된 배열
 	static boolean[] selected;	// 순열을 만들기 위해 사용되는 방문 확인 배열
-	static boolean isBabyGin;
+	static boolean isBabyGin;	// (순열 생성을 중단할 flag 역할)
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -30,7 +30,7 @@ public class Baby_gin_임예찬 {
 			numbers[i] = Integer.parseInt(str.charAt(i) + "");
 		}
 		
-		isBabyGin = false;				// 초기 상태는 false로 지정한다.
+		isBabyGin = false;				// 초기 상태는 false로 지정한다. 
 		generatePerm(0);				// 순열을 만들어내는 메소드를 실행
 		
 		if(isBabyGin) {
@@ -42,12 +42,11 @@ public class Baby_gin_임예찬 {
 
 	/* 입력받은 6자리의 수로 만들 수 있는 모든 순열을 구한다 */
 	private static void generatePerm(int index) {
-		if (isBabyGin) return;	// BabyGin이 성립되는 경우를 찾았다면 더 이상 진행하지 않음
-		
 		if (index == N) {	// 기저조건
 			// 해당 순열이  BabyGin인지 확인하는 메소드 실행 (배열을 문자열로 변환하여 매개변수로 전달)
 			String toStr = "";
 			for (int i = 0; i < N; i++) toStr += result[i];
+//			System.out.println(toStr);
 			if (checkBabyGin(toStr))	isBabyGin = true;
 			return;
 		}
@@ -56,6 +55,7 @@ public class Baby_gin_임예찬 {
 			result[index] = numbers[i];
 			selected[i] = true;
 			generatePerm(index + 1);
+			if (isBabyGin) return; // BabyGin이 성립되는 경우를 찾았다면 더 이상 진행하지 않음 (중요)
 			selected[i] = false;
 		}
 	}
