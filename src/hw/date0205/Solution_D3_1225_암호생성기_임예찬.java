@@ -18,27 +18,24 @@ public class Solution_D3_1225_암호생성기_임예찬 {
 		queue = new LinkedList<Integer>();	// Integer 타입 큐 생성
 		
 		int T = 10;
-		
 		for (int tc = 1; tc <= T; tc++) {
 			br.readLine();
-			queue.clear();	// 큐 초기화
 			
 			// 큐에 데이터 enqueue
 			st = new StringTokenizer(br.readLine());
 			for(int i = 0; i < 8; i++) queue.offer(Integer.parseInt(st.nextToken()));
-
+			
 			int num = 0;
 			int dec = 1;
 			
-			while((num = queue.poll() - dec) > 0) {	// 감소시킨 숫자가 0이하 인 경우 빠져나온다.
-				queue.offer(num);
+			while((num = queue.poll().intValue() - dec) > 0) {	// 감소시킨 숫자가 0이하 인 경우 빠져나온다.
+				queue.offer(new Integer(num)); // Auto-boxing
 				if (++dec > 5) dec = 1; // 사이클 초기화
 			}
-			
 			queue.offer(0);				// 마지막으로 0 넣어 주기
 			
 			System.out.printf("#%d ", tc);
-			for(int i = 0; i < 8; i++) System.out.print(queue.poll()+ " ");
+			while(!queue.isEmpty()) {System.out.print(queue.poll()+ " ");}	 // 결과 출력
 			System.out.println();
 		}
 	}
