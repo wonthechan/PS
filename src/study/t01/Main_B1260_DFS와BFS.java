@@ -38,8 +38,6 @@ public class Main_B1260_DFS와BFS {
 			adj[b][a] = true;	// 양방향
 		}
 		
-//		for (boolean[] b : adj) System.out.println(Arrays.toString(b));
-		
 		dfs(V);
 		System.out.println();
 		Arrays.fill(visited, false);
