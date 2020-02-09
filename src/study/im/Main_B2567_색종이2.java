@@ -7,62 +7,48 @@ import java.util.StringTokenizer;
 
 public class Main_B2567_색종이2 {
 
-	static char[][] map;
+	final static int maxSize = 101;
+	static boolean[][] map;
 	static int N;
-	
+					//	상 하 좌 우
+	static int[] dy4= {-1, 1, 0, 0};
+	static int[] dx4 = {0, 0, -1, 1};
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
-		map = new char[100][100];
+		map = new boolean[maxSize][maxSize];
 		N = Integer.parseInt(br.readLine());
-		
-		for (char[] c: map) {
-			Arrays.fill(c, '0');
-		}
+		int cnt = 0;
 		
 		for (int k = 0; k < N; k++) {
 			st = new StringTokenizer(br.readLine());
 			int startX = Integer.parseInt(st.nextToken());
 			int startY = Integer.parseInt(st.nextToken());
 			
-			// 모서리 체크
-			for (int i = startX; i <= startX + 10; i++) {
-				
-//				map[startY][i] = (map[startY][i] == '0')? '1' : '*';	// 위 모서리
-//				map[startY+10][i] = (map[startY+10][i] == '0')? '1' : '*';// 아래 모서리
-				map[startY][i] = (map[startY][i] == '0')? '1' : map[startY][i];	// 위 모서리
-				map[startY+10][i] = (map[startY+10][i] == '0')? '1' : map[startY+10][i];// 아래 모서리
-				
+			// 사각형 표시하기
+			for (int i = startY; i < startY + 10; i++) {
+				for (int j = startX; j < startX + 10; j++) {
+					map[i][j] = true;
+				}
 			}
-			for (int i = startY + 1; i < startY + 10; i++) {
-//				map[i][startX] = (map[i][startX] == '0')? '1' : '*';		// 왼쪽 모서리
-//				map[i][startX+10] = (map[i][startX+10] == '0')? '1' : '*';	// 오른쪽 모서리
-				map[i][startX] = (map[i][startX] == '0')? '1' : map[i][startX];		// 왼쪽 모서리
-				map[i][startX+10] = (map[i][startX+10] == '0')? '1' : map[i][startX+10];	// 오른쪽 모서리
-				
-			}
-			// 사각형 안 채우기
-			for (int i = startY + 1; i < startY + 10; i++) {
-				for (int j = startX + 1; j < startX + 10; j++) {
-					map[i][j] = '*';
+			
+		}
+		
+		// 표시된 사각형 테두리 변의 길이 카운트 (4방 탐색)
+		for (int i = 0; i < maxSize; i++) {
+			for (int j = 0; j < maxSize; j++) {
+				if (map[i][j] == true) {
+					for (int dir = 0; dir < 4; dir++) {
+						int ny = i + dy4[dir];
+						int nx = j + dx4[dir];
+						if (nx >= 0 && ny >= 0 && nx < maxSize && ny < maxSize && map[ny][nx] == false) cnt++;
+					}
 				}
 			}
 		}
 		
-		for (char[] c: map) {
-			for (char ch: c) {
-				System.out.print(ch + " ");
-			}
-			System.out.println();
-		}
-		int cnt = 0;
-		for (char[] c: map) {
-			for (char ch: c) {
-				if (ch == '1') cnt++;
-			}
-		}
-		
 		System.out.println(cnt);
+		
 	}
 
 }
