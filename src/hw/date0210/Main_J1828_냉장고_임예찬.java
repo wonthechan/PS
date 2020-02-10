@@ -33,6 +33,7 @@ public class Main_J1828_냉장고_임예찬 {
 		
 		// 선택정렬 (최저온드 정렬)
 		int minIdx = 0;
+		int minValue = tempMin[0];
 		for (int i = 0; i < N; i++) {
 			
 		}
