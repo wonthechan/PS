@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 public class Main_B1012_유기농배추 {
 
 	static int M, N, K;
-	static int[][] land;	// 인접행렬
+	static int[][] land;
 	static boolean[][] visited;
 	public static void main(String[] args) throws Exception {
 		System.setIn(new FileInputStream("input_b1012.txt"));
