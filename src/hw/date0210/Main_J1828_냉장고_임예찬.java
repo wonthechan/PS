@@ -47,16 +47,16 @@ public class Main_J1828_냉장고_임예찬 {
 			tempMax[i] = minY;
 		}
 		
-		for (int t : tempMin) System.out.printf("%4d ", t);	// debug print
-		System.out.println();
-		for (int t : tempMax) System.out.printf("%4d ", t);
-		System.out.println();
+//		for (int t : tempMin) System.out.printf("%4d ", t);	// debug print
+//		System.out.println();
+//		for (int t : tempMax) System.out.printf("%4d ", t);
+//		System.out.println();
 		
 		int cnt = 1;					// 냉장고 갯수
 		int prevMax = tempMax[0];		// 초기값 설정
 		for (int i = 1; i < N; i++) {
 			if (tempMin[i] > prevMax) { // 범위가 겹치지 않는 경우 냉장고가 하나 더 필요함
-				System.out.printf("(%d ~ %d)\n", tempMin[i], tempMax[i]);
+//				System.out.printf("(%d ~ %d)\n", tempMin[i], tempMax[i]);
 				cnt++;
 				prevMax = tempMax[i];
 			}
