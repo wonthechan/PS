@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main_J1828_냉장고_임예찬 {
+public class Main_J1828_냉장고_임예찬2 {
 	
 	static int[] tempMin;
 	static int[] tempMax;
@@ -27,14 +27,14 @@ public class Main_J1828_냉장고_임예찬 {
 			tempMax[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		// 선택정렬 (최고온드를 기준으로 오름차순 정렬)
+		// 선택정렬 (최저온드를 기준으로 오름차순 정렬)
 		for (int i = 0; i < N-1; i++) {
 			int minIdx = i;
-			int minValue = tempMax[i];
+			int minValue = tempMin[i];
 			for (int j = i+1; j < N; j++) {
-				if (tempMax[j] < minValue) {
+				if (tempMin[j] < minValue) {
 					minIdx = j;
-					minValue = tempMax[j];
+					minValue = tempMin[j];
 				}
 			}
 			if (minIdx == i) continue; // 자신보다 더 작은 원소를 발견하지 못한 경우
@@ -47,18 +47,20 @@ public class Main_J1828_냉장고_임예찬 {
 			tempMax[i] = minY;
 		}
 		
-		for (int t : tempMin) System.out.printf("%4d ", t);	// debug print
-		System.out.println();
-		for (int t : tempMax) System.out.printf("%4d ", t);
-		System.out.println();
+//		for (int t : tempMin) System.out.printf("%4d ", t);	// debug print
+//		System.out.println();
+//		for (int t : tempMax) System.out.printf("%4d ", t);
+//		System.out.println();
 		
 		int cnt = 1;					// 냉장고 갯수
 		int prevMax = tempMax[0];		// 초기값 설정
 		for (int i = 1; i < N; i++) {
 			if (tempMin[i] > prevMax) { // 범위가 겹치지 않는 경우 냉장고가 하나 더 필요함
-				System.out.printf("(%d ~ %d)\n", tempMin[i], tempMax[i]);
+//				System.out.printf("(%d ~ %d)\n", tempMin[i], tempMax[i]);
 				cnt++;
 				prevMax = tempMax[i];
+			} else { // 범위가 겹쳐지는 경우
+				if (tempMax[i] <= prevMax) prevMax = tempMax[i]; // 이조건이 중요함!!!!
 			}
 		}
 		System.out.println(cnt);
