@@ -11,7 +11,6 @@ public class Main_J1828_냉장고_임예찬 {
 	static int[] tempMin;
 	static int[] tempMax;
 	static int N;
-	static int[] arr;
 	public static void main(String[] args) throws Exception {
 		System.setIn(new FileInputStream("input_j1828.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -28,20 +27,14 @@ public class Main_J1828_냉장고_임예찬 {
 			tempMax[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		int minTemp = tempMin[0];
-		for (int t : tempMin) minTemp = Math.min(minTemp, t);
-		
-		int maxTemp = tempMax[0];
-		for (int t : tempMin) maxTemp = Math.min(maxTemp, t);
-		
-		// 선택정렬 (최저온드 정렬)
+		// 선택정렬 (최고온드를 기준으로 오름차순 정렬)
 		for (int i = 0; i < N-1; i++) {
 			int minIdx = i;
-			int minValue = tempMin[i];
+			int minValue = tempMax[i];
 			for (int j = i+1; j < N; j++) {
-				if (tempMin[j] < minValue) {
+				if (tempMax[j] < minValue) {
 					minIdx = j;
-					minValue = tempMin[j];
+					minValue = tempMax[j];
 				}
 			}
 			if (minIdx == i) continue; // 자신보다 더 작은 원소를 발견하지 못한 경우
@@ -53,39 +46,20 @@ public class Main_J1828_냉장고_임예찬 {
 			tempMin[i] = minX;
 			tempMax[i] = minY;
 		}
-
 		
-		System.out.println(Arrays.toString(tempMin));
-		System.out.println(Arrays.toString(tempMax));
+//		for (int t : tempMin) System.out.printf("%4d ", t);	// debug print
+//		System.out.println();
+//		for (int t : tempMax) System.out.printf("%4d ", t);
+//		System.out.println();
 		
-		int cnt = 1;
-		
-		int curMax = tempMax[0];
+		int cnt = 1;					// 냉장고 갯수
+		int prevMax = tempMax[0];		// 초기값 설정
 		for (int i = 1; i < N; i++) {
-			
-			int nextMin = tempMin[i];
-			int nextMax = tempMax[i];
-			
-			if (nextMin > curMax) { // 범위가 겹치지 않는 경우 냉장고가 하나 더 필요함
-				System.out.printf("(%d ~ %d)\n", nextMin, nextMax);
+			if (tempMin[i] > prevMax) { // 범위가 겹치지 않는 경우 냉장고가 하나 더 필요함
 				cnt++;
-				curMax = nextMax;
+				prevMax = tempMax[i];
 			}
 		}
-		
 		System.out.println(cnt);
-		
-//		int size = maxTemp - minTemp;
-//		
-//		arr = new int[size];
-//		
-//		for (int i = 0; i < N; i++) {
-//			int tempSize = tempMax[i] - tempMin[i];
-//			for (int j = 0; j <= tempSize; j++) {
-//				
-//			}
-//		}
-		
 	}
-
 }
