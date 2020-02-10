@@ -31,6 +31,13 @@ public class Main_J1828_냉장고_임예찬 {
 		int maxTemp = tempMax[0];
 		for (int t : tempMin) maxTemp = Math.min(maxTemp, t);
 		
+		// 선택정렬 (최저온드 정렬)
+		int minIdx = 0;
+		for (int i = 0; i < N; i++) {
+			
+		}
+		
+		
 		int size = maxTemp - minTemp;
 		
 		arr = new int[size];
