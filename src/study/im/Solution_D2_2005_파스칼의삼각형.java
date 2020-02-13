@@ -11,7 +11,7 @@ public class Solution_D2_2005_파스칼의삼각형 {
 	static int N;
 	static int[][] pascal;
 	public static void main(String[] args) throws Exception {
-		System.setIn(new FileInputStream("input_s2005.txt"));
+//		System.setIn(new FileInputStream("input_s2005.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		StringBuilder sb = null;
@@ -25,8 +25,12 @@ public class Solution_D2_2005_파스칼의삼각형 {
 			
 			pascal = new int[N][N];
 			
-			if (N >= 1) pascal[0][0] = 1;
-			if (N >= 2) pascal[1][0] = 1; pascal[1][1] = 1;
+			if (N >= 1) {
+				pascal[0][0] = 1; 
+			}
+			if (N >= 2) {
+				pascal[1][0] = 1; pascal[1][1] = 1;
+			}
 			if (N >= 3) {
 				for (int i = 2; i < N; i++) {
 					for (int j = 0; j <= i; j++) {
@@ -36,8 +40,14 @@ public class Solution_D2_2005_파스칼의삼각형 {
 				}
 			}
 			
+			for (int i = 0; i < N; i++) {
+				for (int j = 0; j <= i; j++) {
+					sb.append(pascal[i][j]).append(" ");
+				}
+				sb.append("\n");
+			}
 			
-			System.out.println(sb.toString());
+			System.out.print(sb.toString());
 		}
 	}
 }
