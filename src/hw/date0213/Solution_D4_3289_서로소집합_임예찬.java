@@ -44,7 +44,7 @@ public class Solution_D4_3289_서로소집합_임예찬 {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		System.setIn(new FileInputStream("input_s3289.txt"));
+//		System.setIn(new FileInputStream("input_s3289.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		StringBuilder sb = null;
