@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main_B7576_토마토 {
+public class Main_B7576_토마토_임예찬 {
 
 	static int M, N;
 	static int[][] map;
