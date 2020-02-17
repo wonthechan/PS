@@ -4,12 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
+/*
+ * 조합을 만들고 그 조합을 이용하는 경우 조합을 전부 만들고 어딘가에 저장해서 사용하는 것보다는
+ * 조합을 만들 때 마다 그 조합을 가지고 바로 사용하는 것이 낫다.
+ */
 public class Main_B17135_캐슬디펜스 {
 
 	static int N, M, D;
