@@ -28,8 +28,7 @@ public class Main_B1260_DFS와BFS_서울7반_임예찬 {
 			st = new StringTokenizer(br.readLine());
 			int first = Integer.parseInt(st.nextToken());
 			int second = Integer.parseInt(st.nextToken());
-			adj[first][second] = true;
-			adj[second][first] = true;
+			adj[first][second] = adj[second][first] = true;
 		}
 		
 		dfs(V);
