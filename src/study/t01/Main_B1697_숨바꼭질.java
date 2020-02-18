@@ -2,6 +2,8 @@ package study.t01;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main_B1697_숨바꼭질 {
@@ -10,6 +12,7 @@ public class Main_B1697_숨바꼭질 {
 	static int MIN;
 	static boolean[] visit;
 	public static void main(String[] args) throws Exception {
+//		System.setIn(new FileInputStream("input_b1697.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		
@@ -19,26 +22,39 @@ public class Main_B1697_숨바꼭질 {
 		K = Integer.parseInt(st.nextToken());
 		
 		// visit 배열 생성
-		visit = new boolean[10001];
+		visit = new boolean[100001];
 		
-		MIN = Integer.MAX_VALUE;
-		dfs(N, 0);
+		MIN = 0;
+		
+		if (K < N) {
+			MIN = N - K;
+		} else {
+			bfs(N);
+		}
 		
 		System.out.println(MIN);
 	}
-	private static void dfs(int cur, int level) {
-		if (cur > K) return;
-		else if (cur == K) {
-			MIN = Math.min(MIN, level);
-			return;
-		}
+	
+	private static void bfs(int cur) {
+		Queue<Integer> queue = new LinkedList<>();
+		queue.offer(cur);
 		
-		if (!visit[cur]) {
-			visit[cur] = true;
+		int size, out;
+		while(!queue.isEmpty()) {
+			size = queue.size();
+			while(size-- > 0) {
+				out = queue.poll();
+				if (out == K) {
+					return;
+				}
+				if (out >= 0 && out <= 100000 && visit[out] == false) {
+					visit[out] = true;
+					queue.offer(out * 2);
+					queue.offer(out + 1);
+					queue.offer(out - 1);
+				}
+			}
+			++MIN; // 연산 횟수 증가
 		}
-		dfs(N * 2, level + 1);
-		dfs(N + 1, level + 1);
-		dfs(N - 1, level + 1);
 	}
-
 }
