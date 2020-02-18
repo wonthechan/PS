@@ -44,7 +44,7 @@ public class Main_B2206_벽부수고이동하기 {
 	private static boolean bfs() {
 		Queue<Pos> queue = new LinkedList<>();
 		visit[0][0] = true;
-		queue.offer(new Pos(0,0, false));
+		queue.offer(new Pos(0,0));
 		while(!queue.isEmpty()) {
 			int size = queue.size();
 			while(size-- > 0) {
@@ -58,25 +58,11 @@ public class Main_B2206_벽부수고이동하기 {
 					if (ny >= 0 && nx >= 0 && ny < N && nx < M 
 							&& visit[ny][nx] == false ) {
 						if (map[ny][nx] == '0') {
-							System.out.println("* " + ny + ", " + nx + ", " + out.chance);
+							System.out.println(ny + ", " + nx);
 							visit[ny][nx] = true;
-							queue.offer(new Pos(ny, nx, out.chance));
+							queue.offer(new Pos(ny, nx));
 						} else {
-							if (!out.chance) {
-								for (int dir2 = 0; dir2 < 4; dir2++) {
-									int nny = ny + dy4[dir2];
-									int nnx = nx + dx4[dir2];
-									if (nny >= 0 && nnx >= 0 && nny < N && nnx < M 
-											&& visit[nny][nnx] == false && map[nny][nnx] == '0') {
-//										System.out.println(ny + ", " + nx);
-										System.out.println("** " + ny + ", " + nx + ", " + out.chance);
-//										out.chance = true;
-										map[ny][nx] = '0';
-										visit[ny][nx] = true;
-										queue.offer(new Pos(ny, nx, true));
-									}
-								}
-							}
+							// 
 						}
 					}
 				}
@@ -87,12 +73,10 @@ public class Main_B2206_벽부수고이동하기 {
 	}
 	
 	static class Pos {
-		int x, y, dir;
-		boolean chance;
-		public Pos(int y, int x, boolean chance) {
+		int x, y;
+		public Pos(int y, int x) {
 			this.y = y;
 			this.x = x;
-			this.chance = chance;
 		}
 	}
 }
