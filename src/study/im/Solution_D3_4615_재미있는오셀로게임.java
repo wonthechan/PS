@@ -1,9 +1,7 @@
 package study.im;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Solution_D3_4615_재미있는오셀로게임 {
@@ -14,7 +12,7 @@ public class Solution_D3_4615_재미있는오셀로게임 {
 	static int[] dy8 = {-1, 1, 0, 0, -1, 1, 1, -1};
 	static int[] dx8 = {0, 0, -1, 1, 1, 1, -1, -1};
 	public static void main(String[] args) throws Exception {
-		System.setIn(new FileInputStream("input_s4615.txt"));
+//		System.setIn(new FileInputStream("input_s4615.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		StringBuilder sb = null;
