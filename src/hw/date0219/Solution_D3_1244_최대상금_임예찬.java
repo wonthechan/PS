@@ -1,9 +1,7 @@
 package hw.date0219;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Solution_D3_1244_최대상금_임예찬 {
@@ -13,7 +11,7 @@ public class Solution_D3_1244_최대상금_임예찬 {
 	static int maxScore;
 	static boolean[][] visit;
 	public static void main(String[] args) throws Exception {
-		System.setIn(new FileInputStream("input_s1244.txt"));
+//		System.setIn(new FileInputStream("input_s1244.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		
