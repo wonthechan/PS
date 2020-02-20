@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/* 완탐으로 밖에 풀 수 없는 유형
+ * 다만 문제에서 제시된 조건들을 통해 가지치기를 해서 시간복잡도를 개선시킬 수 있다
+ */
 public class Solution_D3_1244_최대상금_임예찬 {
 
 	static int[] numbers;
@@ -37,12 +40,12 @@ public class Solution_D3_1244_최대상금_임예찬 {
 	
 	private static void dfs(int cnt) {
 		int curBonus = computeBonus();		// 현재 보너스 금액을 계산
+		if (visit[cnt][curBonus]) return;	// 이미 구한적이 있다면 pass (같은 과정 반복을 피한다)
+		visit[cnt][curBonus] = true;
 		if (cnt == R) {						// 교환이 모두 끝난 경우
 			maxScore = Math.max(maxScore, curBonus);
 			return;
 		}
-		if (visit[cnt][curBonus]) return;	// 이미 구한적이 있다면 pass
-		visit[cnt][curBonus] = true;
 		for (int i = 0; i < N; i++) {
 			for (int j = i + 1; j < N; j++) {
 				swap(i, j);
@@ -58,7 +61,7 @@ public class Solution_D3_1244_최대상금_임예찬 {
 		for (int i = N - 1; i >= 0; i--) {
 			bonus += numbers[i] * mul;
 			mul *= 10;
-		}
+		}                                
 		return bonus;
 	}
 	
