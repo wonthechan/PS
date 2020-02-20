@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -13,7 +12,7 @@ import java.util.StringTokenizer;
 /*
  * 조합을 만들고 그 조합을 이용하는 경우 조합을 전부 만들고 어딘가에 저장해서 사용하는 것보다는
  * 조합을 만들 때 마다 그 조합을 가지고 바로 사용하는 것이 낫다.
- * 넥퍼를 활용하여 조합을 생성해봄
+ * 넥퍼를 활용하여 조합을 생성해봄 (조합을 생성하는 부분과 시뮬구현부분을 분리할 수 있는 장점이 있다.)
  */
 public class Main_B17135_캐슬디펜스_NP {
 	static int N, M, D;
@@ -52,25 +51,12 @@ public class Main_B17135_캐슬디펜스_NP {
 		}
 		
 		/* 넥퍼를 이용한 조합 생성 (M개중에서 3개의 조합) */
-		
 		int[] comboNP = new int[M];					// 조합을 만들기위한 배열 생성
-		for (int i = M - 1; i > M - 4; i--) {
-			comboNP[i] = 1;
-		}
+		comboNP[M-1] = comboNP[M-2] = comboNP[M-3] = 1;
 		
-		int[] archeryX = new int[3];				// 궁수의 X좌표 조합을 담는 배열 생성
-		int k = 0;
 		do {										// 넥퍼를 이용해 새로운 조합이 나올 때마다 game start
-			k = 0;
-			for (int i = 0; i < comboNP.length; i++) {
-				if (comboNP[i] == 1) {
-					archeryX[k++] = i;
-				}
-			}
-//			System.out.println(Arrays.toString(archeryX));
-			MaxCntDead = Math.max(MaxCntDead, startGame(archeryX));
+			MaxCntDead = Math.max(MaxCntDead, startGame(comboNP));
 		} while (np(comboNP));
-		
 		
 		System.out.println(MaxCntDead);
 	}
@@ -129,12 +115,14 @@ public class Main_B17135_캐슬디펜스_NP {
 				}
 			}
 
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < archeryX.length; i++) {
+				if (archeryX[i] == 0) continue;
+				int curArcheryX = i;
 				queue.clear();
 				// 궁수들은 차례대로 돌면서 일단 사정권내에 있는 적들을 모두 우선순위 큐에 넣는다.
 				for (int j = 0; j < enemies.size(); j++) {
 					Enemy enemy = enemies.get(j);
-					dist = Math.abs(archeryY - enemy.y) + Math.abs(archeryX[i] - enemy.x);
+					dist = Math.abs(archeryY - enemy.y) + Math.abs(curArcheryX - enemy.x);
 					if (dist <= D) {
 						enemy.d = dist;
 						queue.offer(enemy);
@@ -146,6 +134,7 @@ public class Main_B17135_캐슬디펜스_NP {
 //					System.out.println(target + " poll");
 					target.isDead = true;	// 제거되었음을 표시한다. (실제로 삭제하진 않는다)
 				}
+				
 			}
 			
 			// 적 리스트를 돌면서 제거 표시가 된 적들을 최종적으로 제거한다.
