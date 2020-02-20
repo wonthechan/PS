@@ -33,7 +33,7 @@ public class Main_B7576_토마토_임예찬 {
 					++cntZero;					// 0을 발견하는 경우 카운트 증가
 					break;
 				case 1:
-					queue.offer(new Pos(i, j));	// 1을 발견하는 경우 (익은 토마토) 위치정보를 큐에 삽입
+					queue.offer(new Pos(i, j));	// 1을 발견하는 경우 (익은 토마토) 위치정보를 큐에 삽입 [시작점이 여러개임]
 					break;
 				}
 			}
