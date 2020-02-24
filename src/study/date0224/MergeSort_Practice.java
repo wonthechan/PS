@@ -2,6 +2,7 @@ package study.date0224;
 
 import java.util.Arrays;
 
+// 참고 : https://heekim0719.tistory.com/289
 public class MergeSort_Practice {
 
 	static int[] sorted_arr;
