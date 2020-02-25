@@ -1,4 +1,4 @@
-package study.date0224;
+package study.date0225;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -19,7 +19,7 @@ public class Main_B17136_색종이붙이기 {
 	static int[] left = {0, 5, 5, 5, 5, 5};
 	
 	public static void main(String[] args) throws Exception {
-		System.setIn(new FileInputStream("input_b17136.txt"));
+//		System.setIn(new FileInputStream("input_b17136.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		
