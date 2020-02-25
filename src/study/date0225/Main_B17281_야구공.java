@@ -16,7 +16,7 @@ public class Main_B17281_야구공 {
 
 	static int N;
 	static int[][] scorePerInit;
-	static boolean[] roo = new boolean[3];
+	static int[] roo = new int[3];
 	static int answer = -987654321;
 	
 	public static void main(String[] args) throws Exception {
@@ -54,7 +54,7 @@ public class Main_B17281_야구공 {
 			for (int init = 0; init < N; init++) {
 				int initScore = 0;	// 이번 이닝에 낸 점수
 				// 매 이닝 마다 주자의 진루 상황 초기화
-				Arrays.fill(roo, false);
+				roo[0] = roo[1] = roo[2] = 0;
 				// 매 이닝 마다 아웃 카운트 초기화
 				int outCnt = 0;
 				// 3아웃까지는 계속해서 이닝 진행
@@ -70,30 +70,28 @@ public class Main_B17281_야구공 {
 						++outCnt;
 						break;
 					case 1:	// 안타(1루타)
-						if (roo[2]) ++initScore; roo[2] = false;	// 3루 주자는 홈인
-						if (roo[1]) roo[2] = true; roo[1] = false;	// 2루 주자는 3루로 이동
-						if (roo[0]) roo[1] = true; roo[0] = false;	// 1루 주자는 2루로 이동
-						roo[0] = true;	// 타자는 1루로 이동
+						initScore += roo[2];	// 3루 주자는 무조건 홈인
+						roo[2] = roo[1];		// 2루 주자는 3루로 진루
+						roo[1] = roo[0];		// 1루 주자는 2루로 진루
+						roo[0] = 1;				// 타자는 1루로 진루
 						break;
 					case 2:	// 2루타
 						// 2루나 3루주자는 무조건 홈인한다.
-						if (roo[2]) ++initScore; roo[2] = false;
-						if (roo[1]) ++initScore; roo[1] = false;
-						if (roo[0]) roo[2] = true; roo[0] = false;	// 1루 주자는 3루로 이동
-						roo[1] = true;	// 타자도 2루로 이동
+						initScore += (roo[2] + roo[1]);
+						roo[2] = roo[0];
+						roo[1] = 1;	// 타자는 항상 2루로 진루한다.
+						roo[0] = 0;	// 1루는 항상 비어 있게 된다.
 						break;
 					case 3:
 						// 주자는 모두 득점한다.
-						if (roo[2]) ++initScore; roo[2] = false;
-						if (roo[1]) ++initScore; roo[1] = false;
-						if (roo[0]) ++initScore; roo[0] = false;
-						roo[2] = true;	// 타자도 3루로 이동
+						initScore += (roo[2] + roo[1] + roo[0]);
+						roo[2] = 1; // 타자는 3루로 이동
+						roo[1] = 0;
+						roo[0] = 0;
 						break;
 					case 4:	// 홈런
-						if (roo[2]) ++initScore; roo[2] = false;
-						if (roo[1]) ++initScore; roo[1] = false;
-						if (roo[0]) ++initScore; roo[0] = false;
-						++initScore; // 타자도 홈인
+						initScore += (roo[2] + roo[1] + roo[0] + 1);
+						roo[2] = roo[1] = roo[0] = 0;
 						break;
 					}
 				}
