@@ -64,7 +64,7 @@ public class Solution_2115_벌꿀채취_임예찬 {
 		for (int k = 1; k < tmp; k++) {	// 반드시 한개는 선택해야 하므로 1부터 시작
 			int sum = 0;
 			int squareSum = 0;
-			for (int b = 0; b < n; b++) {
+			for (int b = 0; b < n; b++) { // 비트마스킹을 통해 모든 부분집합을 구함
 				if ((k & 1 << b) > 0) {
 					sum += map[i][j+b];
 					squareSum += Math.pow(map[i][j+b], 2);
