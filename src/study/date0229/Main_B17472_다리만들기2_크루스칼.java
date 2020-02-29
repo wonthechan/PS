@@ -92,16 +92,19 @@ public class Main_B17472_다리만들기2_크루스칼 {
 		makeSet();
 		
 //		List<Edge> MST = new ArrayList<>();
+		int cntEdges = 0;
 		// 크루스칼 알고리즘 이용 (사이클이 생기기 전까지 가중치가 적은 간선부터 union해나간다)
 		while(!pqEdges.isEmpty()) {
 			Edge out = pqEdges.poll();
 			if (union(out.from, out.to)) {
+				++cntEdges;
 				answer += out.dist;
 //				MST.add(new Edge(out.from, out.to, out.dist));
 			}
 		}
 //		for (Edge edge : MST) System.out.println(edge);
-		System.out.println(answer);
+		// 모두 연결된 상태 : 간선의 갯수 = 전체 정점의 갯수 - 1
+		System.out.println(cntEdges == (cntIsland - 1)? answer : -1);
 	}
 	
 	private static boolean union(int a, int b) {
