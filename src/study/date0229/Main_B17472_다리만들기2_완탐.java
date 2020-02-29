@@ -126,8 +126,6 @@ public class Main_B17472_다리만들기2_완탐 {
 			}
 		}
 		
-
-		
 //		for (char[] c : map) System.out.println(Arrays.toString(c));
 		System.out.println(answer<987654321? answer : -1);
 	}
