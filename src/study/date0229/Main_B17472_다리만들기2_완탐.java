@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-import javax.swing.event.ListSelectionEvent;
-
 /* 
  * 1) 먼저 BFS 탐색을 통해 섬들의 개수를 알아내고 알파벳으로 마킹했음 (A, B, C ...)
  * 2) 각 섬들의 시작점을 구하여 배열로 관리함.
