@@ -29,7 +29,7 @@ public class Main_B14501_퇴사 {
 		int answer = 0;
 		// 부분집합을 구해서 모든 경우를 살펴보자
 		int max = (int) Math.pow(2, N);
-		int sum, visit;
+		int sum, visit;	// 비트마스킹
 		for (int bit = 1; bit <= max; bit++) {
 			sum = 0;
 			visit = 0;
