@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main_b15683_감시 {
+public class Main_B15683_감시 {
 
 	static int N, M, answer = Integer.MAX_VALUE;
 	static int[][] map;
