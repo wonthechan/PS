@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 
 public class Main_B14891_톱니바퀴 {
 
-	static ArrayList<Character>[] arr = new ArrayList[4];
+	static ArrayList<Character>[] arr = new ArrayList[4];	// 리스트로 바퀴 관리
 	static int answer = 0;
 	static int[] isRotate = new int[4];
 	public static void main(String[] args) throws Exception {
