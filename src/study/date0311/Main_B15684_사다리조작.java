@@ -36,6 +36,7 @@ public class Main_B15684_사다리조작 {
 		
 		// 모든 가로선 조합 찾아보기 (완탐) - DFS
 		// 0번에서 최대 3번까지 사다리를 놓아본다. => 백트래킹되는 효과!
+		// 0개 부터 3개의 조합을 만드는 과정
 		for (int k = 0; k < 4; k++) {
 			dfs(1, 0, k);
 			if (answer != -1) {
@@ -46,19 +47,19 @@ public class Main_B15684_사다리조작 {
 		System.out.println(answer);
 	}
 	
-	private static void dfs(int si, int cnt, int limit) {
-		if (cnt == limit) {
-			if (check()) answer = cnt;
+	private static void dfs(int idx, int level, int limit) {
+		if (level == limit) {
+			if (check()) answer = level;
 			return;
 		}
 		
-		for (int i = si; i < N; i++) {
+		for (int i = idx; i < N; i++) {
 			for (int d = 1; d <= H; d++) {
 				// 가로선이 연속되는 경우는 피해야 한다. adj 행렬 값 확인해서 -1이 아닌 경우를 피하자 (이미 가로선이 있으니까)
 				if (adj[i][d] > -1 || adj[i+1][d] > -1) continue;
 				adj[i][d] = i + 1;
 				adj[i + 1][d] = i;
-				dfs(i, cnt + 1, limit);
+				dfs(i, level + 1, limit);
 				adj[i][d] = -1;
 				adj[i + 1][d] = -1;
 			}
