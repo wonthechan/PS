@@ -24,10 +24,21 @@ public class 좋은아침 {
 		
 //		result = new char[R];
 //		makeCombo(0, 0);				// 조합의 결과 배열에 바로 저장함.
-		
-		makeCombo2(0,0, new char[R]);	// 결과 배열을 달고 다님 (전역변수 사용하지 않음)
+//		makeCombo2(0,0, new char[R]);	// 결과 배열을 달고 다님 (전역변수 사용하지 않음)
+		makeDupCombo(0, 0, new char[R]);	// 중복 조합 구하기
 	}
 	
+	private static void makeDupCombo(int idx, int level, char[] res	) {
+		if (level == R) {
+			System.out.println(Arrays.toString(res));
+			return;
+		}
+		for (int i = idx, end = chars.length; i < end; i++) {
+			res[level] = chars[i];
+			makeDupCombo(i, level+1, res);
+		}
+	}
+
 	private static void makeCombo2(int idx, int level, char[] res) {
 		if (level == R) {
 			System.out.println(Arrays.toString(res));
