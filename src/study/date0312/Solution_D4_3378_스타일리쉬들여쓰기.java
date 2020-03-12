@@ -24,7 +24,7 @@ public class Solution_D4_3378_스타일리쉬들여쓰기 {
 			sb.append("#").append(tc).append(" 0 "); // 첫 라인은 들여쓰기 개수가 항상 0이다.
 			for (boolean[][] a : perms) {
 				for (boolean[] b : a)	Arrays.fill(b, true);
-			}	// 배열 초기화
+			}	// 배열 초기화 (모든 중복순열이 가능한 후보군에 있음)
 			st = new StringTokenizer(br.readLine());
 			p = Integer.parseInt(st.nextToken());
 			q = Integer.parseInt(st.nextToken());
