@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Stack;
 
-public class Solution_kakao20공채_괄호변환 {
+public class Solution_kakao20공채2_괄호변환 {
 	
 	static Stack<Character> stack = new Stack<>();
 	public static void main(String[] args) throws Exception {

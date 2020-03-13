@@ -9,7 +9,7 @@ import java.util.Iterator;
 /*
  * 기본적인 문자열 사용 문제 : 문자열의 길이가 길지 않으므로 완탐 가능
  */
-public class Solution_kakao20공채_문자열압축 {
+public class Solution_kakao20공채1_문자열압축 {
 	public static void main(String[] args) throws Exception {
 		System.setIn(new FileInputStream("input_kakao20#1.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
