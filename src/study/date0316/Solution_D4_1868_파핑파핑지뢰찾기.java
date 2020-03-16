@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+// 참고: https://jksk0115.tistory.com/76#
 public class Solution_D4_1868_파핑파핑지뢰찾기 {
 
 	static int N;
