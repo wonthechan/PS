@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 // 참고: https://hoho325.tistory.com/74
 public class Main_B3954_인터프리터 {
 
-	static int[] mem;
+	static int[] mem, freq;
 	static int memLen, codeLen, inputLen, p, inputPointer;
 	static int cntLoop;
 	static String code, input;
@@ -35,6 +35,7 @@ public class Main_B3954_인터프리터 {
 			mem = new int[memLen];	// 배열 초기화
 			p = 0;					// 포인터 인덱스 초기화
 			pairs = new Pair[codeLen];
+			freq = new int[codeLen];
 			cntLoop = 0;
 			
 			checkBracket();
@@ -71,8 +72,9 @@ public class Main_B3954_인터프리터 {
 				case ']':
 					if (mem[p] != 0) {
 						++cntLoop;
-						i = pairs[i].left; // Jump to [
+						i = pairs[i].left; // Jump to [	
 					}
+					++freq[i];
 					break;
 				case '.':
 //					System.out.println(mem[p]);
@@ -88,15 +90,21 @@ public class Main_B3954_인터프리터 {
 				
 				++i;
 				++cntLoop;
-				if (i > latestBracket) latestBracket = i;
+//				if (i > latestBracket) latestBracket = i;
 				if (i == codeLen) {
 					sb.append("Terminates").append('\n');
 					break;
 				}
 				
 				if (cntLoop >= 50000000) {
-					sb.append("Loops ").append(pairs[latestBracket].left).append(" ")
-					.append(pairs[latestBracket].right).append('\n');
+//					System.out.println(Arrays.toString(freq));
+					int maxIdx = 0;
+					int maxVal = 0;
+					for (int k = 0; k < codeLen; k++) {
+						if (freq[k] > maxVal) maxIdx = k;
+					}
+					sb.append("Loops ").append(pairs[maxIdx].left).append(" ")
+					.append(pairs[maxIdx].right).append('\n');
 					break;
 				}
 				
