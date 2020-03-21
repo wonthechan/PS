@@ -53,7 +53,9 @@ public class Solution_D4_5987_달리기 {
 			return 1L;
 		}
 		
-		if (memo[visit] > 0) return memo[visit];
+		if (memo[visit] > 0) {
+			return memo[visit];
+		}
 		
 		for (int i = 0; i < N; i++) {
 			if ((visit & 1 << i) > 0) continue;
