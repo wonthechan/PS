@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
+// 참고: https://medium.com/@dltkddud4403/2020-카카오-블라인드-코딩테스트-블록-이동하기-57d668a744d0
 public class Solution_kakao20공채7_블록이동하기 {
-
 	static int N;
 	static int[][] map;
 	static int[][] visit;
