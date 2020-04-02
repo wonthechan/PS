@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Solution_D3_5607_조합 {
+public class Solution_D3_5607_조합_임예찬 {
 
 	static final long P = 1234567891;
 	static int N, R;
@@ -23,8 +23,7 @@ public class Solution_D3_5607_조합 {
 			st = new StringTokenizer(br.readLine());
 			N = Integer.parseInt(st.nextToken());
 			R = Integer.parseInt(st.nextToken());
-			
-			
+			 
 			// N! 구하기
 			answer = 1L;
 			for (int i = 2; i <= N; i++) {
