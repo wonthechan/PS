@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
  * 1씩 줄여서 9진수로 만들어준다.
  * 마지막으로 9진수의 수를 다시 10진수로 변환하는 과정을 거친다.
  * @author Yechan
- * 참고: https://sxngho.github.io/ps/2020/02/09/SWEA-4530/
+ * 참고: https://sxngho.githㅅub.io/ps/2020/02/09/SWEA-4530/
  */
 public class Solution_D4_4530_극한의청소작업 {
 
