@@ -1,4 +1,4 @@
-package study.date0409.graph;
+package study.graph;
 
 import java.util.Arrays;
 
