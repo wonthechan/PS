@@ -9,7 +9,7 @@ public class Main_B3356_라디오전송 {
 
 	static int L;
 	public static void main(String[] args) throws Exception {
-		System.setIn(new FileInputStream("input_b3356.txt"));
+		System.setIn(new FileInputStream("input/input_b3356.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		L = Integer.parseInt(br.readLine());
