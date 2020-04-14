@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
+/** 최소 주기를 구하는 문제 */
 public class Main_B3356_라디오전송 {
 
 	static int L;
