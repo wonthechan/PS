@@ -1,4 +1,4 @@
-package study.date0416;
+package study.date0417;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
