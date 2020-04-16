@@ -20,7 +20,7 @@ public class Main_B1463_1로만들기 {
 		
 		for (int i = 2; i <= n; i++) {
 			if (i % 3 == 0) {
-				dp[i] = Math.min(dp[i], dp[i/3] + 1);
+				dp[i] = Math.min(dp[i], dp[i/3] + 1); // i/3 의 최적해 + 1 
 			}
 			if (i % 2 == 0) {
 				dp[i] = Math.min(dp[i], dp[i/2] + 1);
