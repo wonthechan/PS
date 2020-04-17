@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 /*
  * 문자열 3개의 LCS를 구하기
  * => 기존 2차원 배열을 3차원으로 늘려서 구해주면 됨!
+ * 참고: https://travelbeeee.tistory.com/152
  */
 public class Main_B1958_LCS3 {
 
