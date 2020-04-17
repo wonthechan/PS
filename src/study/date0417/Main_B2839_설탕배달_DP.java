@@ -1,11 +1,11 @@
-package study.dp;
+package study.date0417;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 /** 동전거스름돈 문제를 참고하여 DP로 풀 수 있다.
  * */
-public class 소금배달_DP {
+public class Main_B2839_설탕배달_DP {
 
 	static final int INF = 987654321;
 	public static void main(String[] args) throws Exception {
@@ -26,5 +26,4 @@ public class 소금배달_DP {
 		
 		System.out.println(dp[N] >= INF ? -1 : dp[N]);
 	}
-
 }
