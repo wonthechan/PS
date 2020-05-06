@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+// 참고: https://beenpow.github.io/sweab/boj/%EB%B0%B1%EC%A4%80/2020/03/07/BOJ-6987/
 public class Main_B6987_월드컵 {
 
 	static int[][] score = new int[6][3];	// 만들어질 수 있는 경기 결과 (0: win, 1: tie, 2: lose)
