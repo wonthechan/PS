@@ -6,7 +6,7 @@ import java.util.Map;
 // 2h
 public class Solution_kakao겨울인턴십4_호텔방배정 {
 
-	static Map<Long, Long> parents;
+	static Map<Long, Long> parents = new HashMap<Long, Long>();	// makeSet 과정 (공간복잡도 때문에 Map 사용)
 	public static void main(String[] args) {
 		long k = 10;
 		long[] room_number = {1,3,4,1,3,1};
@@ -15,7 +15,6 @@ public class Solution_kakao겨울인턴십4_호텔방배정 {
 
 	static public long[] solution(long k, long[] room_number) {
         long[] answer = new long[room_number.length];
-        makeSet();
         
         int idx = 0;
         for (long num : room_number) {
@@ -24,24 +23,16 @@ public class Solution_kakao겨울인턴십4_호텔방배정 {
         return answer;
     }
 	
-	static void makeSet() {
-		parents = new HashMap<Long, Long>();
-	}
-	
 	static long findSet(long a) {
 		if (!parents.containsKey(a)) return a;
 		long ret = findSet(parents.get(a));
-		parents.put(a, ret);
+		parents.put(a, ret);			// path compression.
 		return ret;
 	}
 	
 	static long assign(long a) {
-		long rootA = findSet(a);
-		if (rootA == a) { 	// a번 방이 비어있는 경우
-			parents.put(a, a + 1);
-		} else {			// a번 방이 이미 차있는 경우
-			parents.put(rootA, rootA + 1);
-		}
+		long rootA = findSet(a);		// a가 가리키는 비어 있는 방 번호 rootA
+		parents.put(rootA, rootA + 1);
 		return rootA;
 	}
 }
