@@ -13,10 +13,10 @@ import java.util.StringTokenizer;
 public class Main_B2252_줄세우기 {
 
 	static int N, M;	// N(1≤N≤32,000), M(1≤M≤100,000)
-	static List[] list;
+	static List<Integer>[] list;
 	static int[] inDegree;	// 진입차수 저장 배열
 	public static void main(String[] args) throws Exception {
-//		System.setIn(new FileInputStream("input/b2252.txt"));
+		System.setIn(new FileInputStream("input/b2252.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		StringBuilder sb = new StringBuilder();
@@ -44,15 +44,19 @@ public class Main_B2252_줄세우기 {
 				queue.offer(i);
 			}
 		}
+		if (queue.size() == 0) {
+			System.out.println("사이클 존재");
+			return;
+		}
 		
 		// 큐가 빌 때까지 자신이 가리키고 있는 좌표들을 방문하여
 		// inDegree값을 -1 해주고, 만약 0이라면 큐에 넣어주고
 		// 현재 값을 출력 결과에 넣어준다.
-//		List<Integer> result = new ArrayList<>();
+		List<Integer> result = new ArrayList<>();
 		while (!queue.isEmpty()) {
 			int out = queue.poll();
-//			result.add(out);
-			sb.append(out).append(" ");
+			result.add(out);
+//			sb.append(out).append(" ");
 			for (int i = 0; i < list[out].size(); i++) {
 				int temp = (int) list[out].get(i);
 				--inDegree[temp];
@@ -62,8 +66,13 @@ public class Main_B2252_줄세우기 {
 			}
 		}
 		
+		if (result.size() != N) {
+			System.out.println("사이클 존재");
+			return;
+		}
+		
 		// 결과 출력
-//		for (int i : result) sb.append(i).append(" ");
+		for (int i : result) sb.append(i).append(" ");
 		System.out.println(sb.toString());
 	}
 
