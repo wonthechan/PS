@@ -22,6 +22,7 @@ public class Main_B11404_플로이드 {
 		adj = new int[N][N];	// 인접 행렬 (동시에 최소 비용을 저장)
 		
 		for (int[] arr : adj) Arrays.fill(arr, INF);
+//		for (int i = 0; i < N; i++) adj[i][i] = 0;
 		
 		for (int i = 0; i < M; i++) {
 			st = new StringTokenizer(br.readLine());
