@@ -20,10 +20,12 @@ public class Main_B2636_치즈 {
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 		map = new int[N][M];
+		int initCnt = 0;
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < M; j++) {
 				map[i][j] = Integer.parseInt(st.nextToken());
+				initCnt += map[i][j];	// 초기 치즈의 개수 세보기
 			}
 		}	// 입력 끝
 		
