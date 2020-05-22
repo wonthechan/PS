@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+// 참고: https://yabmoons.tistory.com/468
 public class hw_algo0522_서울_7반_임예찬 {
 
 	static final int exp[] = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 };				// 0부터 9까지의 Exp
