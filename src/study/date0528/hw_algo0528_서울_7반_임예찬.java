@@ -10,7 +10,7 @@ public class hw_algo0528_서울_7반_임예찬 {
 	static int N, X;
 	static int[][] map;
 	public static void main(String[] args) throws Exception {
-		System.setIn(new FileInputStream("input/s4014.txt"));
+//		System.setIn(new FileInputStream("input/s4014.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		
