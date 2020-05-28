@@ -3,100 +3,131 @@ package study.date0528;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class hw_algo0528_서울_7반_임예찬 {
 
-	static int N, X;
+	// 상 우 하 좌
+	static final int[] dy4 = {-1, 0, 1, 0};
+	static final int[] dx4 = {0, 1, 0, -1};
+	
+	static final int[][] typeTunnel = {	// 터널 종류 별로 갈 수 있는 방향 hardcoding
+			{},	
+			{0, 1, 2, 3},	
+			{0, 2},	
+			{1, 3},	
+			{0, 1},	
+			{1, 2},	
+			{2, 3},	
+			{0, 3},	
+	};
+	
+	static int N, M, holeY, holeX, L;
 	static int[][] map;
+	static boolean[][] visited;
+	
 	public static void main(String[] args) throws Exception {
-//		System.setIn(new FileInputStream("input/s4014.txt"));
+//		System.setIn(new FileInputStream("input/s1953.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		
 		int T = Integer.parseInt(br.readLine());
-		
 		for (int tc = 1; tc <= T; tc++) {
 			int answer = 0;
+			
 			st = new StringTokenizer(br.readLine());
 			N = Integer.parseInt(st.nextToken());
-			X = Integer.parseInt(st.nextToken());
-			map = new int[N][N];
+			M = Integer.parseInt(st.nextToken());
+			holeY = Integer.parseInt(st.nextToken());
+			holeX= Integer.parseInt(st.nextToken());
+			L = Integer.parseInt(st.nextToken());
+			map = new int[N][M];
+			visited = new boolean[N][M];
 			for (int i = 0; i < N; i++) {
 				st = new StringTokenizer(br.readLine());
-				for (int j = 0; j < N; j++) {
+				for (int j = 0; j < M; j++) {
 					map[i][j] = Integer.parseInt(st.nextToken());
 				}
-			}
+			} // 입력 끝
 			
-			// 모든 행과 열에 대해서 활주로 건설 가능 검사
-			for (int i = 0; i < N; i++) {
-				answer += checkValidRow(i);
-				answer += checkValidCol(i);
-			}
-			System.out.println("#" + tc + " " + answer);
+			System.out.println("#" + tc + " " + bfs());
+//			for (boolean[] b : visited) System.out.println(Arrays.toString(b));
 		}
 	}
 	
-	// row 열 검사 223222
-	private static int checkValidRow(int row) {
-		int curH = map[row][0]; // 최초 높이
-		int hCnt = 1;			// 현재 높이 누적
-		int j = 1;
-		while (j < N) {	// 한칸 씩 검사
-			if (curH != map[row][j]) {	// 높이가 다른 경우
-				if (Math.abs(curH - map[row][j]) > 1) return 0;	// 높이 차이가 1을 초과하는 경우는 무조건 건설 불가
-				// 높이 차이가 나긴 나는데 1인 경우에는
-				// 경사로를 만들 수 있는지 확인
-				if (map[row][j] > curH) {	// 더 높은 경우
-					if (hCnt < X) return 0;	// 경사로를 못 만드는 경우 (높이누적 부족)
-					hCnt = 1;			// 누적 카운트 초기화
-					curH = map[row][j]; // 현재 높이 갱신
-				} else {	// 더 낮은 경우
-					// 앞으로 만들 공간이 있는지 확인해야 됨.
-					if (j + X > N) return 0;	// 범위를 초과해서 만들 공간 자체가 없음
-					for (int k = j + 1; k < j + X; k++) if (map[row][k] != map[row][j]) return 0;	// 높이가 불균등
-					curH = map[row][j]; // 현재 높이 갱신
-					hCnt = 0;			// 누적 카운트 초기화
-					j += X - 1;			// 경사로의 마지막 위치로 jump;
+	private static int bfs() {
+		int answer = 1;
+		int hours = 0;
+		visited[holeY][holeX] = true;
+		Queue<Pos> queue = new LinkedList<>();
+		queue.offer(new Pos(holeY, holeX));
+		while (!queue.isEmpty()) {
+			int size = queue.size();
+			
+			if (hours == L - 1) break;	// 시간이 다 지나면 탐색 중지 (한시간은 이미 씀)
+			
+			while (size-- > 0) {
+				Pos out = queue.poll();
+				
+				// 터널별로 갈 수 있는 방향이 전부 다르다.
+				int[] dirs = typeTunnel[map[out.y][out.x]];
+				for (int k = 0; k < dirs.length; k++) {
+					int dir = dirs[k];
+					int ny = out.y + dy4[dir];
+					int nx = out.x + dx4[dir];
+					if (ny < 0 || nx < 0 || ny >= N || nx >= M) continue;
+					if (map[ny][nx] == 0) continue;	// 다음칸에 터널이 아예 없는 경우
+					if (visited[ny][nx]) continue;
+					switch (dir) {	// 다음 칸에서 터널이 이어지는 경우에만 진행
+					case 0:	// 위 방향
+						if (map[ny][nx] == 1 || map[ny][nx] == 2 || map[ny][nx] == 5 || map[ny][nx] == 6) {
+							visited[ny][nx] = true;
+							queue.offer(new Pos (ny, nx));
+							++answer;
+						}
+						break;
+					case 1:	// 오른쪽
+						if (map[ny][nx] == 1 || map[ny][nx] == 3 || map[ny][nx] == 6 || map[ny][nx] == 7) {
+							visited[ny][nx] = true;
+							queue.offer(new Pos (ny, nx));
+							++answer;
+						}
+						break;
+					case 2:	// 아래쪽
+						if (map[ny][nx] == 1 || map[ny][nx] == 2 || map[ny][nx] == 4 || map[ny][nx] == 7) {
+							visited[ny][nx] = true;
+							queue.offer(new Pos (ny, nx));
+							++answer;
+						}
+						break;
+					case 3:	// 왼쪽
+						if (map[ny][nx] == 1 || map[ny][nx] == 3 || map[ny][nx] == 4 || map[ny][nx] == 5) {
+							visited[ny][nx] = true;
+							queue.offer(new Pos (ny, nx));
+							++answer;
+						}
+						break;
+					}
 				}
-			} else {	// 현재 높이가 직전 높이와 같은 경우
-				++hCnt;
 			}
-			++j;
+			++hours;
 		}
-//		System.out.println("row: " + row);
-		return 1;
+		return answer;
 	}
 	
-	// column 열 검사
-	private static int checkValidCol(int col) {
-		int curH = map[0][col]; // 최초 높이
-		int hCnt = 1;			// 현재 높이 누적
-		int i = 1;
-		while (i < N) {	// 한칸 씩 검사
-			if (curH != map[i][col]) {	// 높이가 다른 경우
-				if (Math.abs(curH - map[i][col]) > 1) return 0;	// 높이 차이가 1을 초과하는 경우는 무조건 건설 불가
-				// 높이 차이가 나긴 나는데 1인 경우에는
-				// 경사로를 만들 수 있는지 확인
-				if (map[i][col] > curH) {	// 더 높은 경우
-					if (hCnt < X) return 0;	// 경사로를 못 만드는 경우 (높이누적 부족)
-					hCnt = 1;			// 누적 카운트 초기화
-					curH = map[i][col]; // 현재 높이 갱신
-				} else {	// 더 낮은 경우
-					// 앞으로 만들 공간이 있는지 확인해야 됨.
-					if (i + X > N) return 0;	// 범위를 초과해서 만들 공간 자체가 없음
-					for (int k = i + 1; k < i + X; k++) if (map[k][col] != map[i][col]) return 0;	// 높이가 불균등
-					curH = map[i][col]; // 현재 높이 갱신
-					hCnt = 0;			// 누적 카운트 초기화
-					i += X - 1;			// 경사로의 마지막 위치로 jump;
-				}
-			} else {	// 현재 높이가 직전 높이와 같은 경우
-				++hCnt;
-			}
-			++i;
+	static class Pos {
+		int y, x;
+		public Pos(int y, int x) {
+			this.y = y;
+			this.x = x;
 		}
-//		System.out.println("col: " + col);
-		return 1;
+		@Override
+		public String toString() {
+			return "Pos [y=" + y + ", x=" + x + "]";
+		}
 	}
+
 }
