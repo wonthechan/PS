@@ -1,55 +1,45 @@
 package study.date0705;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Solution_모의고사 {
 
-	static Set<Integer> answer = new HashSet<>();
 	public static void main(String[] args) {
-		System.out.println(solution("011"));
+		System.out.println(Arrays.toString(solution(new int[] {1,3,2,4,2})));
 	}
 
-	public static int solution(String numbers) {
-        // 문자열을 배열로 변환
-        int[] nums = numbers.chars().map(i -> i - '0').toArray();
+	/*
+	 * 	1번 수포자가 찍는 방식: 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
+		2번 수포자가 찍는 방식: 2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
+		3번 수포자가 찍는 방식: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...
+	 */
+	public static int[] solution(int[] answers) {
+        List<Integer> answer = new ArrayList<>();
         
-        // 순열 생성
-        for (int i = 1; i <= nums.length; i++) {
-        	makePermDFS(0, i, new boolean[nums.length], new int[i], nums);
+        int[][] patterns = {
+        		{1, 2, 3, 4, 5},	
+        		{2, 1, 2, 3, 2, 4, 2, 5},	
+        		{3, 3, 1, 1, 2, 2, 4, 4, 5, 5}
+        };
+        
+        int[] scores = new int[3];
+        
+        for (int i = 0; i < answers.length; i++) {
+        	for (int j = 0; j < 3; j++) {
+        		if (answers[i] == patterns[j][i % patterns[j].length]) {
+        			++scores[j];
+        		}
+        	}
         }
-        return answer.size();
+        
+        int maxScore = Arrays.stream(scores).max().getAsInt();
+        
+        for (int i = 0; i < 3; i++) {
+        	if (scores[i] == maxScore) answer.add(i);
+        }
+        
+        return answer.stream().mapToInt(i -> i + 1).toArray();
     }
-
-	private static void makePermDFS(int level, int r, boolean[] visited, int[] result, int[] nums) {
-		if (level == r) {
-			// 순열 결과 순자로 만들기
-			int res = 0;
-			int pow = (int) Math.pow(10, r - 1);
-			for (int i = 0; i < r; i++) {
-				res += result[i] * pow;
-				pow /= 10;
-			}
-			if (answer.contains(res)) return;
-			if (isPrime(res)) answer.add(res);
-			return;
-		}
-		
-		for (int i = 0; i < nums.length; i++) {
-			if (visited[i]) continue;
-			visited[i] = true;
-			result[level] = nums[i];
-			makePermDFS(level + 1, r, visited, result, nums);
-			visited[i] = false;
-		}
-	}
-	
-	private static boolean isPrime(int num) {
-		if (num < 2) return false;
-		int end = (int) Math.sqrt(num);
-		for (int i = 2; i <= end; i++) {
-			if (num % i == 0) return false;
-		}
-		return true;
-	}
 }
