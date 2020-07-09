@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-// 우선순위를 안쓰는 버전은 간선이 매우 많을 때 유리!
+// 우선순위를 안쓰는 버전은 간선이 매우 많을 때 유리! => 정점은 많은데 간선 개수가 적은 경우 최악
 // 일반적인 간선 빈도에서는 간선리스트 + 우선순위큐 조합이 권장됨.
 public class Dijkstra {
 
