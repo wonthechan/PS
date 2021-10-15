@@ -1,4 +1,4 @@
-﻿package hw.date0122;
+package hw.date0122;
 
 import java.util.Scanner;
 
